@@ -9,7 +9,7 @@ const MENU_ITEMS = [
   },
   {
     name: "Profile",
-    urlPage: "/profile",
+    urlPage: "/users",
     urlIcon: ProfileIcon,
   },
   {
