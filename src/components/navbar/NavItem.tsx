@@ -3,13 +3,14 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 interface Props {
-  name: string;
+  name?: string;
   url: string;
-  icon: any;
+  icon?: any;
+  itemShow?: boolean;
 }
 
 
-function NavItem({ name, url, icon }:Props) {
+function NavItem({ name, url, icon, itemShow }:Props) {
   const [isHover, setIsHover] = useState(false);
 
   return (
@@ -19,7 +20,7 @@ function NavItem({ name, url, icon }:Props) {
       onMouseOver={() => setIsHover(true)}
       onMouseOut={() => setIsHover(false)}
     >
-      {isHover && (
+      {(isHover) && (!itemShow) && (
         <p className="absolute bg-muted border left-full w-36 h-full flex items-center pl-2 text-[1.2rem] rounded-r-xl">
           {name}
         </p>

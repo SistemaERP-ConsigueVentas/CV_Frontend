@@ -12,28 +12,33 @@ import {
 } from "lucide-react";
 
 function AppLayout() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(true);
+  const [ nameItemShow, setNameItemShow] = useState(false); 
 
   const btnUpdateMenuVisibility = () => {
     setMenuOpen(!menuOpen);
   };
 
-  const navContainer = {
-    visible: {
-      x: 0,
-      transition: {
-        x: { velocity: 100 },
-        duration: 0.3,
-      },
-    },
-    hidden: {
-      x: -250,
-      transition: {
-        x: { velocity: 100 },
-        duration: 0.3,
-      },
-    },
-  };
+  const btnUpdateNameVisibility = () =>{
+    setNameItemShow(!nameItemShow)
+  }
+  
+  // const navContainer = {
+  //   visible: {
+  //     x: 0,
+  //     transition: {
+  //       x: { velocity: 100 },
+  //       duration: 0.3,
+  //     },
+  //   },
+  //   hidden: {
+  //     x: -250,
+  //     transition: {
+  //       x: { velocity: 100 },
+  //       duration: 0.3,
+  //     },
+  //   },
+  // };
 
   return (
     <div className="w-full h-screen flex flex-col">
@@ -57,13 +62,12 @@ function AppLayout() {
           </div>
         </div>
         <AnimatePresence>
-          {menuOpen && (
             <motion.div
               className="bg-background h-screen absolute top-0 left-0 flex flex-col border-r z-50"
               initial="hidden"
               animate={menuOpen ? "visible" : "hidden"}
               exit="hidden"
-              variants={navContainer}
+             //variants={navContainer}
             >
               <button
                 onClick={btnUpdateMenuVisibility}
@@ -72,13 +76,14 @@ function AppLayout() {
                 <LogoIcon className="h-3/5" />
               </button>
               <div className="grow">
-                <Navbar />
+                <Navbar 
+                  nameItemShow={nameItemShow}
+                  handlerNameItem={btnUpdateNameVisibility}/>
               </div>
             </motion.div>
-          )}
         </AnimatePresence>
       </div>
-      <div className="grow">
+      <div className={`grow ${nameItemShow && 'relative left-60 w-[85%]'}`} >
         <Outlet />
       </div>
       <Toaster />

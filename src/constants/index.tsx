@@ -1,30 +1,30 @@
-import { File, Layout, PieChart, Upload, UserCircle } from "lucide-react";
+import { FileText, Home, PieChart, Receipt, Settings } from "lucide-react";
 
 const MENU_ITEMS = [
   {
-    name: "Dashboard",
+    name: "Inicio",
     url: "/",
-    icon: <Layout/>,
+    icon: <Home/>,
   },
   {
-    name: "Profile",
+    name: "Gastos",
     url: "/users",
-    icon: <UserCircle/>,
+    icon: <Receipt/>,
   },
   {
-    name: "Files",
+    name: "Reportes",
     url: "/file",
-    icon: <Upload/>,
-  },
-  {
-    name: "Billing",
-    url: "/billing",
-    icon: <File/>,
-  },
-  {
-    name: "Reports",
-    url: "/reports",
     icon: <PieChart/>,
+  },
+  {
+    name: "Facturación",
+    url: "/billing",
+    icon: <FileText/>,
+  },
+  {
+    name: "Configuración",
+    url: "/reports",
+    icon: <Settings/>,
   }
 ];
 
