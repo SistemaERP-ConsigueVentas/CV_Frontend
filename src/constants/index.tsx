@@ -1,19 +1,19 @@
-import { FileText, Home, PieChart, Receipt, Settings } from "lucide-react";
+import { FileText, Layout, PieChart, Receipt, Upload, UserCircle } from "lucide-react";
 
 const MENU_ITEMS = [
   {
     name: "Inicio",
     url: "/",
-    icon: <Home/>,
+    icon: <Layout/>,
   },
   {
     name: "Gastos",
-    url: "/users",
+    url: "/bills",
     icon: <Receipt/>,
   },
   {
     name: "Reportes",
-    url: "/file",
+    url: "/reports",
     icon: <PieChart/>,
   },
   {
@@ -22,10 +22,15 @@ const MENU_ITEMS = [
     icon: <FileText/>,
   },
   {
-    name: "Configuración",
-    url: "/reports",
-    icon: <Settings/>,
-  }
+    name: "Usuarios",
+    url: "/users",
+    icon: <UserCircle/>,
+  },
+  {
+    name: "Files",
+    url: "/file",
+    icon: <Upload/>,
+  },  
 ];
 
 export { MENU_ITEMS };

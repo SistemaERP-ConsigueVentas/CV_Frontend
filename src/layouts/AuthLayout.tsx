@@ -1,5 +1,6 @@
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import LoginBackground from "@/assets/bg-login.jpg";
+import { Toaster } from "@/components/ui/toaster";
 
 interface Props {
   children: React.ReactNode;
@@ -16,9 +17,10 @@ function AuthLayout({ children }: Props) {
         <img
           src={LoginBackground}
           alt="Background"
-          className="grayscale object-cover w-full h-full opacity-20"
+          className="dark:grayscale dark:opacity-20 object-cover w-full h-full"
         />
       </div>
+      <Toaster />
     </div>
   );
 }

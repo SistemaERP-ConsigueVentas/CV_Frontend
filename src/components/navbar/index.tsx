@@ -1,38 +1,44 @@
 import NavItem from "./NavItem";
 import { MENU_ITEMS } from "@/constants";
-import { ArrowRightLeft } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../ui/Tooltip";
 import { Button } from "../ui/button";
-import { NavLink } from "react-router-dom";
-import NavItemInfo from "./NavItemInfo";
+import { ArrowRightLeft } from "lucide-react";
 
 interface NavbarProps {
-  nameItemShow: boolean;
-  handlerNameItem: () => void;
+  isExpanded: boolean;
+  btnUpdateMenuVisibility: () => void;
 }
 
-function Navbar({ nameItemShow, handlerNameItem }: NavbarProps) {
+function Navbar({ isExpanded, btnUpdateMenuVisibility }: NavbarProps) {
   return (
-    <nav className="h-full bg-background flex">
-      <div>
-        {MENU_ITEMS.map((item, index) => (
-          <NavItem key={index} {...item} itemShow={nameItemShow} />
+    <>
+      <nav className="pt-6">
+        {MENU_ITEMS.map((data, index) => (
+          <NavItem key={index} {...data} isExpanded={isExpanded} />
         ))}
-        <Button
-          onClick={handlerNameItem}
-          variant="ghost"
-          className="relative top-1 h-10 left-2"
-        >
-          <ArrowRightLeft className="w-4" />
-        </Button>
-      </div>
-      {nameItemShow && (
-        <ul className="h-full w-52">
-          {MENU_ITEMS.map((item, index) => (
-            <NavItemInfo key={index} {...item} />
-          ))}
-        </ul>
-      )}
-    </nav>
+        <TooltipProvider delayDuration={10}>
+          <Tooltip>
+            <TooltipTrigger
+              asChild
+              onClick={btnUpdateMenuVisibility}
+              className="absolute top-[40rem] xl:top-[50rem] h-10 -right-[1.7rem]"
+            >
+              <Button variant="outline" className="z-50">
+                <ArrowRightLeft className="w-4" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              {isExpanded ? <span>Cerrar</span> : <span>Abrir</span>}
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </nav>
+    </>
   );
 }
 

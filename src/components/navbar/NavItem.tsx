@@ -1,33 +1,46 @@
 import { useState } from "react";
-
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 interface Props {
   name?: string;
   url: string;
-  icon?: any;
-  itemShow?: boolean;
+  icon: any;
+  isExpanded: boolean;
 }
 
-
-function NavItem({ name, url, icon, itemShow }:Props) {
+function NavItem({ name, url, icon, isExpanded }: Props) {
   const [isHover, setIsHover] = useState(false);
+  const location = useLocation();
+  const isActive = location.pathname === url;
 
   return (
     <NavLink
       to={url}
-      className="group w-16 h-14 flex items-center justify-center relative"
+      className={`group flex relative ${
+        isExpanded
+          ? "w-[12rem] ml-4 origin-left transition-all duration-75"
+          : "w-[2.6rem]"
+      } h-[3.8rem] mx-auto`}
       onMouseOver={() => setIsHover(true)}
       onMouseOut={() => setIsHover(false)}
     >
-      {(isHover) && (!itemShow) && (
-        <p className="absolute bg-muted border left-full w-36 h-full flex items-center pl-2 text-[1.2rem] rounded-r-xl">
+      <div
+        className={`${
+          isActive && "bg-primary text-black"
+        } p-2 w-full group-hover:bg-primary group-hover:text-black rounded transition-all duration-75 origin-left mt-5 flex gap-5 ${
+          isActive && isExpanded && "bg-primary origin-left text-black"
+        }`}
+      >
+        <span>{icon}</span>
+        <span className={`${!isExpanded && "scale-0"} origin-left`}>
+          {name}
+        </span>
+      </div>
+      {isHover && !isExpanded && (
+        <p className=" absolute top-3 bg-muted border left-[3.8rem] w-36 h-full flex items-center pl-2 text-[1.2rem] rounded-r-xl">
           {name}
         </p>
       )}
-      <div className="p-2 group-hover:bg-primary group-hover:text-black rounded transition-all duration-300">
-      {icon}
-      </div>
     </NavLink>
   );
 }
