@@ -44,10 +44,7 @@ function AppLayout() {
         </div>
       </div>
       <div
-        className={`${
-          isExpanded &&
-          "left-[10.1rem] w-[35.4rem] xl:left-[8.2rem] xl:w-[106rem] scale-95 origin-right"
-        } transition-all duration-200 relative ml-10 xl:ml-0 px-20 xl:px-40`}
+        className="w-[90%] table-column-group left-[8rem] relative"
       >
         <Outlet />
       </div>
@@ -58,3 +55,7 @@ function AppLayout() {
 }
 
 export default AppLayout;
+
+// {`${
+//   isExpanded && "bottom-2 origin-right xl:scale-90"
+// } w-[80%] left-[8rem] md:w-[38rem] lg:w-[80%] transition-all duration-100 relative`}
